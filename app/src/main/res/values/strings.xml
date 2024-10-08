@@ -2,4 +2,5 @@
     <string name="app_name">Firebase Auth Kotlin</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
+    <string name="error_input_empty">Fields cannot be empty!</string>
 </resources>
