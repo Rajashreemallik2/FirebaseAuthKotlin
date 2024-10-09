@@ -1,4 +1,4 @@
-package com.example.firebaseauthkotlin.utility
+package com.example.firebaseauthkotlin.utilities
 
 import androidx.lifecycle.Observer
 

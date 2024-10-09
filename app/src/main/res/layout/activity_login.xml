@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@color/login_bk_color"
     android:focusableInTouchMode="true"
-    android:layout_gravity="center"
     android:gravity="center"
-    tools:context=".ui.LoginActivity">
+    tools:context=".activities.LoginActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -32,7 +31,8 @@
                     style="@style/viewParent.headerText.NoMode"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:text="Here’s\nyour first\nstep with \nus! ">
+                    android:text="@string/first_step">
+
                 </TextView>
 
                 <ImageView
@@ -77,17 +77,18 @@
                 android:textColor="@color/primaryTextColor"
                 android:textSize="@dimen/newsMoreTextSize" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cirLoginButton"
                 style="@style/loginButton"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
-                android:text="Login"/>
-<!--                app:spinning_bar_color="#FFFF"-->
-<!--                app:spinning_bar_padding="6dp"-->
-<!--                app:spinning_bar_width="4dp"/>-->
+                android:text="Login" />
+            <!--                app:spinning_bar_color="#FFFF"-->
+            <!--                app:spinning_bar_padding="6dp"-->
+            <!--                app:spinning_bar_width="4dp"/>-->
 
             <TextView
+                android:id="@+id/signupTextLink"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:onClick="onLoginClick"
@@ -141,23 +142,4 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <View
-        android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="11dp"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_side_bg"/>
-
-    <ImageView
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add_img"
-        android:layout_marginRight="11dp"
-        android:layout_marginBottom="30dp"
-        android:onClick="onLoginClick"/>
-
 </RelativeLayout>

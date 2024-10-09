@@ -1,13 +1,15 @@
-package com.example.firebaseauthkotlin.ui
+package com.example.firebaseauthkotlin.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.firebaseauthkotlin.R
-import com.example.firebaseauthkotlin.utility.EventObserver
-import com.example.firebaseauthkotlin.viewmodel.AuthViewModel
+import com.example.firebaseauthkotlin.utilities.EventObserver
+import com.example.firebaseauthkotlin.viewmodels.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.editTextEmail
 import kotlinx.android.synthetic.main.activity_login.editTextPassword
@@ -21,20 +23,21 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        // Find the root view of the activity
-        val button = findViewById<Button>(R.id.cirLoginButton)
-
         viewModel = ViewModelProvider(this)[AuthViewModel::class.java]
         subscribeToObservers()
 
-        // Set an OnClickListener on the root view
+        val button = findViewById<Button>(R.id.cirLoginButton)
         button.setOnClickListener {
             // Create an Intent to start SecondActivity
-            Toast.makeText(this, "hello", Toast.LENGTH_LONG).show()
             viewModel.login(
-                editTextEmail.text.toString().trim(),
-                editTextPassword.text.toString().trim()
+                editTextEmail.text.toString().trim(), editTextPassword.text.toString().trim()
             )
+        }
+
+        val signUpBtn = findViewById<TextView>(R.id.signupTextLink)
+        signUpBtn.setOnClickListener {
+            intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 

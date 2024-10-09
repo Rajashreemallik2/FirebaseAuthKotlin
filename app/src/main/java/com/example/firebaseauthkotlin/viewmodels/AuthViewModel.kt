@@ -1,4 +1,4 @@
-package com.example.firebaseauthkotlin.viewmodel
+package com.example.firebaseauthkotlin.viewmodels
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firebaseauthkotlin.R
-import com.example.firebaseauthkotlin.utility.Event
-import com.example.firebaseauthkotlin.utility.Resource
+import com.example.firebaseauthkotlin.utilities.Event
+import com.example.firebaseauthkotlin.utilities.Resource
 import com.example.firebaseauthkotlin.repositories.AuthRepository
 import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel

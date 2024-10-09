@@ -1,6 +1,6 @@
 package com.example.firebaseauthkotlin.repositories
 
-import com.example.firebaseauthkotlin.utility.Resource
+import com.example.firebaseauthkotlin.utilities.Resource
 import com.google.firebase.auth.AuthResult
 
 interface AuthRepository {

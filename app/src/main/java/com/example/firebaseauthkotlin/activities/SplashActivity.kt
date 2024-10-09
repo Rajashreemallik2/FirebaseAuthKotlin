@@ -1,4 +1,4 @@
-package com.example.firebaseauthkotlin.ui
+package com.example.firebaseauthkotlin.activities
 
 import android.content.Intent
 import android.os.Bundle

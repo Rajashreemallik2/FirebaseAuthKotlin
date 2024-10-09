@@ -1,4 +1,4 @@
-package com.example.firebaseauthkotlin.dependency
+package com.example.firebaseauthkotlin.dependencies
 
 import com.example.firebaseauthkotlin.repositories.AuthRepository
 import com.example.firebaseauthkotlin.repositories.FirebaseAuthRepository

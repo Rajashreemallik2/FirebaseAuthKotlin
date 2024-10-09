@@ -1,4 +1,4 @@
-package com.example.firebaseauthkotlin.dependency
+package com.example.firebaseauthkotlin.dependencies
 
 import android.content.Context
 import dagger.Module

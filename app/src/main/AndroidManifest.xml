@@ -16,23 +16,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseAuthKotlin"
         tools:targetApi="31">
-
-        <!--SplashActivity theme -->
         <activity
-            android:name=".ui.SplashActivity"
+            android:name=".activities.SignUpActivity"
+            android:exported="false" />
+        <!-- SplashActivity theme -->
+        <activity
+            android:name=".activities.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name=".ui.MainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true" />
     </application>
 

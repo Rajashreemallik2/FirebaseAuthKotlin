@@ -3,4 +3,6 @@
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
     <string name="error_input_empty">Fields cannot be empty!</string>
+    <string name="User_name_text">Name</string>
+    <string name="first_step"> Here’s\nyour first\nstep with \nus!</string>
 </resources>
