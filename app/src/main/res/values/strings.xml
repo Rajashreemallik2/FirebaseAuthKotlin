@@ -5,4 +5,6 @@
     <string name="error_input_empty">Fields cannot be empty!</string>
     <string name="User_name_text">Name</string>
     <string name="first_step"> Here’s\nyour first\nstep with \nus!</string>
+    <string name="error_password_short">Password must be atleast 8 characters</string>
+    <string name="error_invalid_email">Invalid email!</string>
 </resources>

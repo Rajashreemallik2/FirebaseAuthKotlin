@@ -28,7 +28,6 @@ class LoginActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.cirLoginButton)
         button.setOnClickListener {
-            // Create an Intent to start SecondActivity
             viewModel.login(
                 editTextEmail.text.toString().trim(), editTextPassword.text.toString().trim()
             )
