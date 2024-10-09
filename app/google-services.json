@@ -12,7 +12,12 @@
           "package_name": "com.example.firebaseauthkotlin"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "584557048930-n03s2pb39jpbo9tegb3c6js5kcqorbud.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC_AZKDLSzpJYgOb1UEkHUJPlt2DYtk3OQ"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584557048930-n03s2pb39jpbo9tegb3c6js5kcqorbud.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

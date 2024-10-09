@@ -10,6 +10,7 @@ import com.example.firebaseauthkotlin.R
 import com.example.firebaseauthkotlin.repositories.AuthRepository
 import com.example.firebaseauthkotlin.utilities.Event
 import com.example.firebaseauthkotlin.utilities.Resource
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.AuthResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -27,6 +28,9 @@ class AuthViewModel @Inject constructor(
     private val _loginStatus = MutableLiveData<Event<Resource<AuthResult>>>()
     val loginStatus: LiveData<Event<Resource<AuthResult>>> = _loginStatus
 
+    private val _loginWithGoogleStatus = MutableLiveData<Event<Resource<AuthResult>>>()
+    val loginWithGoogleStatus: LiveData<Event<Resource<AuthResult>>> = _loginWithGoogleStatus
+
     private val _registerStatus = MutableLiveData<Event<Resource<AuthResult>>>()
     val registerStatus: LiveData<Event<Resource<AuthResult>>> = _registerStatus
 
@@ -40,6 +44,14 @@ class AuthViewModel @Inject constructor(
                 val result = repository.login(email, password)
                 _loginStatus.postValue(Event(result))
             }
+        }
+    }
+
+    fun loginWithGoogle(account: GoogleSignInAccount?) {
+        _loginWithGoogleStatus.postValue(Event(Resource.Loading()))
+        viewModelScope.launch(dispatcher) {
+            val result = repository.loginWithGoogle(account)
+            _loginWithGoogleStatus.postValue(Event(result))
         }
     }
 

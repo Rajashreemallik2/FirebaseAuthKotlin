@@ -4,8 +4,11 @@ import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.firebaseauthkotlin.entities.User
 import com.example.firebaseauthkotlin.utilities.Resource
+import com.example.firebaseauthkotlin.utilities.executeWithTryCatch
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -13,21 +16,43 @@ import kotlinx.coroutines.withContext
 
 class FirebaseAuthRepository : AuthRepository {
 
-    private val auth = FirebaseAuth.getInstance()
-    private val users = FirebaseFirestore.getInstance().collection("users")
+    private val firebaseAuth = FirebaseAuth.getInstance()
+    private val existingUsers = FirebaseFirestore.getInstance().collection("users")
 
     override suspend fun login(email: String, password: String): Resource<AuthResult> {
         return withContext(Dispatchers.IO) {
-            try {
-                val result = auth.signInWithEmailAndPassword(email, password)
+            executeWithTryCatch {
+                val result = firebaseAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            Log.e(TAG, "Login: User logged in successfully!")
+                            Log.i(TAG, "Login: User logged in successfully!")
                         }
                     }
                 Resource.Success(result.await())
-            } catch (e: Exception) {
-                Resource.Error(e.message ?: "An unknown error occurred")
+            }
+        }
+    }
+
+    override suspend fun loginWithGoogle(account: GoogleSignInAccount?): Resource<AuthResult> {
+        val credential = GoogleAuthProvider.getCredential(account!!.idToken, null)
+
+        return withContext(Dispatchers.IO) {
+            executeWithTryCatch {
+                val resultTask = firebaseAuth.signInWithCredential(credential)
+                resultTask
+                    .addOnSuccessListener { authRes ->
+                        if (authRes.additionalUserInfo!!.isNewUser) {
+                            Log.i(TAG, "New user logged in, user: ${authRes.user?.displayName}")
+                        } else {
+                            Log.i(
+                                TAG, "Existing user logged in, user: ${authRes.user?.displayName}"
+                            )
+                        }
+                    }
+                    .addOnFailureListener { err ->
+                        Log.e(TAG, "Login Failed with error : ${err.message}")
+                    }
+                Resource.Success(resultTask.await())
             }
         }
     }
@@ -36,19 +61,17 @@ class FirebaseAuthRepository : AuthRepository {
         email: String, name: String, password: String
     ): Resource<AuthResult> {
         return withContext(Dispatchers.IO) {
-            try {
-                val result = auth.createUserWithEmailAndPassword(email, password).await()
+            executeWithTryCatch {
+                val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
                 val userId = result.user?.uid!!
                 val user = User(userId = userId, name = name)
-                users.document(userId).set(user)
+                existingUsers.document(userId).set(user)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
-                            Log.e(TAG, "Register: User registered successfully!")
+                            Log.i(TAG, "Register: User registered successfully!")
                         }
                     }
                 Resource.Success(result)
-            } catch (e: Exception) {
-                Resource.Error(e.message ?: "An unknown error occurred")
             }
         }
     }
