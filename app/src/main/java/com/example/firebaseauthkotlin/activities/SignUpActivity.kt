@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
                 Toast.makeText(this, "Loading", Toast.LENGTH_LONG).show()
             }
         ) {
-            Toast.makeText(this, "User registered successfully! " + it.user, Toast.LENGTH_LONG)
+            Toast.makeText(this, "User registered successfully!", Toast.LENGTH_LONG)
                 .show()
         })
     }
